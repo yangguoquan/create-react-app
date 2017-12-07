@@ -1,8 +1,8 @@
 {
-  "name": "react-scripts",
-  "version": "1.0.17",
+  "name": "react-scripts-fdt",
+  "version": "0.1.0",
   "description": "Configuration and scripts for Create React App.",
-  "repository": "facebookincubator/create-react-app",
+  "repository": "fdt-component/create-react-app-fdt",
   "license": "MIT",
   "engines": {
     "node": ">=6"
@@ -45,6 +45,8 @@
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "object-assign": "4.1.1",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
     "promise": "8.0.1",

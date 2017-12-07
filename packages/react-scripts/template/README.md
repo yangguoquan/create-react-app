@@ -1,3 +1,34 @@
+## 基于1.0.17版本，做了二次开发
+- add url-loader 增加对svg的打包编译
+- add less-loader 统一用less
+- add css-modules 开启css-modules
+- add prebuild 检查当前版号是否有tag存在
+- change 去除build之后文件的hash
+- add externals 钩子
+
+### proxy api
+package.json 添加 
+```
+"proxy": {
+    "/api": {
+      "target": "http://xxx",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": ""
+      }
+    }
+  },
+```
+
+### externals 
+package.json 添加
+"externals": {
+  "react": "React",
+  "react-dom": "ReactDOM",
+  "react-router-dom": "ReactRouterDOM"
+}
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
