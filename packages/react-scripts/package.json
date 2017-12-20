@@ -1,6 +1,6 @@
 {
   "name": "react-scripts-fdt",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Configuration and scripts for Create React App.",
   "repository": "fdt-component/create-react-app-fdt",
   "license": "MIT",
@@ -8,7 +8,7 @@
     "node": ">=6"
   },
   "bugs": {
-    "url": "https://github.com/facebookincubator/create-react-app/issues"
+    "url": "https://github.com/fdt-component/create-react-app-fdt/issues"
   },
   "files": [
     "bin",
