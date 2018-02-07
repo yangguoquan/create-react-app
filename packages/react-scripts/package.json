@@ -1,6 +1,6 @@
 {
   "name": "react-scripts-fdt",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Configuration and scripts for Create React App.",
   "repository": "fdt-component/create-react-app-fdt",
   "license": "MIT",
@@ -58,11 +58,12 @@
     "webpack": "3.8.1",
     "webpack-dev-server": "2.9.4",
     "webpack-manifest-plugin": "1.3.2",
-    "whatwg-fetch": "2.0.3"
+    "whatwg-fetch": "2.0.3",
+    "eslint-config-airbnb-base": "^12.1.0"
   },
   "devDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   },
   "optionalDependencies": {
     "fsevents": "1.1.2"
