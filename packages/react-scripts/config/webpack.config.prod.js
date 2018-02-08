@@ -41,9 +41,14 @@ const env = getClientEnvironment(publicUrl);
 if (env.stringified['process.env'].NODE_ENV !== '"production"') {
   throw new Error('Production builds must have NODE_ENV=production.');
 }
+// 是否开启哈希版本控制
+const isHashVersion =
+  env.stringified['process.env'].REACT_APP_HASHVERSION === '"true"';
 
 // Note: defined here because it will be used more than once.
-const cssFilename = 'css/[name].css';
+const cssFilename = isHashVersion
+  ? 'css/[name].[contenthash:8].css'
+  : 'css/[name].css';
 
 // ExtractTextPlugin expects the build output to be flat.
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
@@ -71,8 +76,10 @@ module.exports = {
     // Generated JS file names (with nested folders).
     // There will be one main bundle, and one file per asynchronous chunk.
     // We don't currently advertise code splitting but Webpack supports it.
-    filename: 'js/[name].js',
-    chunkFilename: 'js/[name].chunk.js',
+    filename: isHashVersion ? 'js/[name].[chunkhash:8].js' : 'js/[name].js',
+    chunkFilename: isHashVersion
+      ? 'js/[name].[chunkhash:8].chunk.js'
+      : 'js/[name].chunk.js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
@@ -235,8 +242,8 @@ module.exports = {
                       },
                     },
                     {
-                      loader: require.resolve('less-loader') // compiles Less to CSS
-                    }
+                      loader: require.resolve('less-loader'), // compiles Less to CSS
+                    },
                   ],
                 },
                 extractTextPluginOptions
@@ -256,7 +263,9 @@ module.exports = {
             // by webpacks internal loaders.
             exclude: [/\.js$/, /\.html$/, /\.json$/],
             options: {
-              name: 'media/[name].[ext]',
+              name: isHashVersion
+                ? 'media/[name].[hash:8].[ext]'
+                : 'media/[name].[ext]',
             },
           },
           // ** STOP ** Are you adding a new loader?
@@ -306,7 +315,7 @@ module.exports = {
       },
       mangle: {
         safari10: true,
-      },        
+      },
       output: {
         comments: false,
         // Turned on because emoji and regex is not minified properly using default
