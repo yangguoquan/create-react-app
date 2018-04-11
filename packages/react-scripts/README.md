@@ -1,17 +1,35 @@
-# react-scripts
+> 基于官方[create-react-app](https://github.com/facebook/create-react-app)做了二次开发
 
-## 基于1.0.17版本，做了二次开发
-- add url-loader 增加对svg的打包编译
-- add less-loader 统一用less
-- add css-modules 开启css-modules
-- add prebuild 检查当前版号是否有tag存在
-- change 去除build之后文件的hash
-- add externals 钩子
-- add local api server 增加本地api mock服务
-
-### proxy api
-package.json 添加 
+* add 默认为css预编译为less（css|less文件）
+* add 开启css modules
+* add prebuild 检查当前版号是否有tag存在
+* add externals 配置  
+`package.json`
+``` json
+"externals": {
+  "react": "React",
+  "react-dom": "ReactDOM",
+  "react-router-dom": "ReactRouterDOM"
+}
 ```
+* add 本地mock  
+`api/index.js`
+* add env 配置
+`.env文件`  
+.env.developmennt //开发环境  
+.env.production //线上环境
+```
+REACT_APP_自定义变量
+
+```
+* add 开关 文件是否带hash串  
+`.env文件`
+``` 
+REACT_APP_HASHVERSION=true
+```
+* add api 代理  
+`package.json`
+``` json
 "proxy": {
   "/api": {
     "target": "http://xxx",
@@ -20,17 +38,26 @@ package.json 添加
       "^/api": ""
     }
   }
-},
+}
 ```
 
-### externals 
-package.json 添加
-"externals": {
-  "react": "React",
-  "react-dom": "ReactDOM",
-  "react-router-dom": "ReactRouterDOM"
+> 用法指南   
+> 因为`less-loader` 和`css-loader`中的`css modules` 对相对路径的引用解析有冲突  
+[参考issues](https://github.com/webpack-contrib/less-loader/issues/109#issuecomment-253797335)
+``` less
+// css 文件
+// error
+class {
+  background: url(./svg.logo);
 }
+// good 
+class {
+  background: url(\./svg.logo);
+}
+```
 
+
+### 官方文档 
 This package includes scripts and configuration used by [Create React App](https://github.com/facebookincubator/create-react-app).<br>
 Please refer to its documentation:
 
